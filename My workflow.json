@@ -1,0 +1,111 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -208,
+        -144
+      ],
+      "id": "e1a922ed-431b-470e-9185-01700e9f9828",
+      "name": "When chat message received",
+      "webhookId": "b40e809c-712b-4d26-ac56-41e5dfeebb5c"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        -96,
+        64
+      ],
+      "id": "db5b4ccd-00bd-424e-aad8-d1054968760b",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "0kRwFMMXntZgcLEC",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -16,
+        -112
+      ],
+      "id": "2a01cf8e-2bc4-46bf-86d0-7682d3d17834",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        16,
+        80
+      ],
+      "id": "ffe8810c-80ca-414d-84bd-1d4e5a2bfbbf",
+      "name": "Simple Memory"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "85f7ce1a-cd88-47f7-93a8-a4f14aa11078",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "cce556f92510a08a892ab0d39df9b26cf0632a0809714a2c6cbfa3c59bdfe67e"
+  },
+  "id": "267AIauUjmelcasB",
+  "tags": []
+}
